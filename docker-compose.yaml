@@ -1,0 +1,17 @@
+services:
+  db_blog:
+    container_name: blog_database
+    image: postgres
+    env_file:
+    - ./.env/database.env
+    
+  djangoapp:
+    container_name: djangoapp
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+    - .:/app
+    ports:
+    - 8000:8000
+  
