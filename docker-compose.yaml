@@ -4,6 +4,8 @@ services:
     image: postgres
     env_file:
     - ./.env/database.env
+    ports:
+    - 5432:5432
     
   djangoapp:
     container_name: djangoapp
