@@ -6,7 +6,7 @@ services:
     - ./.env/database.env
     ports:
     - 5432:5432
-    
+
   djangoapp:
     container_name: djangoapp
     build:
@@ -16,4 +16,6 @@ services:
     - .:/app
     ports:
     - 8000:8000
+    env_file:
+    - ./.env/app.env
   
