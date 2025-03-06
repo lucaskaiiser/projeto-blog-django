@@ -41,6 +41,6 @@ def post(request):
         request,
         'blog/pages/post.html',
         {
-            # 'page_obj': page_obj,
+            'page_obj': page_obj,
         }
     )
