@@ -68,6 +68,7 @@ class Post(models.Model):
         null=True,
         blank=True
     )
+    excert = models.CharField(max_length=255, default='')
     is_published = models.BooleanField(default=True)
     content = models.TextField()
     cover = models.ImageField(upload_to='posts/', blank=True, default='')
