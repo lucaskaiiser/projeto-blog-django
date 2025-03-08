@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 # Create your models here.
@@ -61,6 +62,12 @@ class Page(models.Model):
     
 
 class Post(models.Model):
+
+    class CustomManager(models.Manager):
+        def get_published(self):
+            return self.filter(is_published=True).order_by('-pk')
+        
+    objects:CustomManager = CustomManager()
     title = models.CharField(max_length=50)
     slug = models.SlugField(
         unique=True,
@@ -87,3 +94,14 @@ class Post(models.Model):
         User, on_delete=models.SET_NULL, blank=True, null=True,
         related_name='post_updated_by'
     )
+
+    def get_absolute_url(self):
+        if not self.is_published:
+            return reverse('blog:index')
+        
+        url_to_post = reverse('blog:post', args=(self.slug,))
+        return url_to_post
+        
+    
+
+    
