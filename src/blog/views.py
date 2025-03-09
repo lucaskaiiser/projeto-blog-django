@@ -33,13 +33,12 @@ def page(request):
 
 def post(request, slug):
     post = Post.objects.filter(slug=slug).first()
-    tags = post.tags.all()
     return render(
         request,
         'blog/pages/post.html',
         {
             "post": post,
-            "tags": tags
+            
         }
     )
 

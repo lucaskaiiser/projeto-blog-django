@@ -80,8 +80,8 @@ class Post(models.Model):
     content = models.TextField()
     cover = models.ImageField(upload_to='posts/', blank=True, default='')
     cover_in_post = models.BooleanField(default=True)
-    created_at = models.DateField(auto_now_add=True)
-    updated_at = models.DateField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, blank=True, null=True
     )
